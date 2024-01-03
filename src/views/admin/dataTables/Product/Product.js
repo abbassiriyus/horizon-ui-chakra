@@ -144,7 +144,7 @@ export default function Settings() {
     {
         title: 'Image',
         dataIndex: 'image',
-        render:(_,item)=><Image style={{width:'100px'}} src={item.image} alt='no image'/>
+        render:(_,item)=><Image style={{height:'80px'}} src={item.image} alt='no image'/>
       },
     {
       title: 'Title',
@@ -153,7 +153,7 @@ export default function Settings() {
       ...getColumnSearchProps('title'),
     },
     {
-        title: 'model',
+        title: 'Модель',
         dataIndex: 'model',
         key: 'model',
         ...getColumnSearchProps('model'),
@@ -163,6 +163,22 @@ export default function Settings() {
       dataIndex: 'look_mor',
       key: 'look_mor',
     },
+    {
+        title: 'Гарантия',
+        dataIndex: 'kafolat',
+        key: 'kafolat',
+      },
+      {
+        title: 'Артикул',
+        dataIndex: 'maqola',
+        key: 'maqola',
+        ...getColumnSearchProps('maqola'),
+      },
+      {
+        title: 'Производитель',
+        dataIndex: 'homiy',
+        key: 'homiy',
+      },
     {
       title: 'Address',
       dataIndex: 'address',
