@@ -1,65 +1,32 @@
-/*!
-  _   _  ___  ____  ___ ________  _   _   _   _ ___   
- | | | |/ _ \|  _ \|_ _|__  / _ \| \ | | | | | |_ _| 
- | |_| | | | | |_) || |  / / | | |  \| | | | | || | 
- |  _  | |_| |  _ < | | / /| |_| | |\  | | |_| || |
- |_| |_|\___/|_| \_\___/____\___/|_| \_|  \___/|___|
-                                                                                                                                                                                                                                                                                                                                       
-=========================================================
-* Horizon UI - v1.1.0
-=========================================================
+import React, { useState } from 'react';
 
-* Product Page: https://www.horizon-ui.com/
-* Copyright 2023 Horizon UI (https://www.horizon-ui.com/)
+import "./style.css"
+import Product from "./Product/Product.js"
+import BigCategory from "./Bigcategory/BigCategory.js"
+import Category from "./Category/Category.js"
+import SubCategory from "./Subcategory/SubCategory.js"
+import { Radio } from 'antd';
 
-* Designed and Coded by Simmmple
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-*/
-
-// Chakra imports
-import { Box, SimpleGrid } from "@chakra-ui/react";
-import DevelopmentTable from "views/admin/dataTables/components/DevelopmentTable";
-import CheckTable from "views/admin/dataTables/components/CheckTable";
-import ColumnsTable from "views/admin/dataTables/components/ColumnsTable";
-import ComplexTable from "views/admin/dataTables/components/ComplexTable";
-import {
-  columnsDataDevelopment,
-  columnsDataCheck,
-  columnsDataColumns,
-  columnsDataComplex,
-} from "views/admin/dataTables/variables/columnsData";
-import tableDataDevelopment from "views/admin/dataTables/variables/tableDataDevelopment.json";
-import tableDataCheck from "views/admin/dataTables/variables/tableDataCheck.json";
-import tableDataColumns from "views/admin/dataTables/variables/tableDataColumns.json";
-import tableDataComplex from "views/admin/dataTables/variables/tableDataComplex.json";
-import React from "react";
 
 export default function Settings() {
-  // Chakra Color Mode
-  return (
-    <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
-      <SimpleGrid
-        mb='20px'
-        columns={{ sm: 1, md: 2 }}
-        spacing={{ base: "20px", xl: "20px" }}>
-        <DevelopmentTable
-          columnsData={columnsDataDevelopment}
-          tableData={tableDataDevelopment}
-        />
-        <CheckTable columnsData={columnsDataCheck} tableData={tableDataCheck} />
-        <ColumnsTable
-          columnsData={columnsDataColumns}
-          tableData={tableDataColumns}
-        />
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={tableDataComplex}
-        />
-      </SimpleGrid>
-    </Box>
-  );
+var [page,setPage]=useState(0)
+
+  return <div>
+<div className="body_product">
+<Radio.Group  onChange={(e) => setPage(e.target.value*1)}>
+        <Radio.Button value="0">Product</Radio.Button>
+        <Radio.Button value="1">Bigcategory</Radio.Button>
+        <Radio.Button value="2">Category</Radio.Button>
+        <Radio.Button value="3">Subcategory</Radio.Button>
+      </Radio.Group>
+
+{page===0?(<div><Product/></div>):(<div></div>)}
+{page===1?(<div><BigCategory/></div>):(<div></div>)}
+{page===2?(<div><Category/></div>):(<div></div>)}
+{page===3?(<div><SubCategory/></div>):(<div></div>)}
+
+
+</div>
+
+  </div>;
 }
