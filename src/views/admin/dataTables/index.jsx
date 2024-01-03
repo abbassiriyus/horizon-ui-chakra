@@ -6,6 +6,7 @@ import BigCategory from "./Bigcategory/BigCategory.js"
 import Category from "./Category/Category.js"
 import SubCategory from "./Subcategory/SubCategory.js"
 import { Radio } from 'antd';
+import InputPage from './Product/InputPage';
 
 
 export default function Settings() {
@@ -24,7 +25,7 @@ var [page,setPage]=useState(0)
 {page===1?(<div><BigCategory/></div>):(<div></div>)}
 {page===2?(<div><Category/></div>):(<div></div>)}
 {page===3?(<div><SubCategory/></div>):(<div></div>)}
-
+<InputPage id={1}/>
 
 </div>
 

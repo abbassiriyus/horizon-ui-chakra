@@ -178,22 +178,19 @@ export default function Settings() {
         title: 'Производитель',
         dataIndex: 'homiy',
         key: 'homiy',
+        ...getColumnSearchProps('homiy'),
+         sorter: (a, b) => a.homiy.length - b.homiy.length,
+      sortDirections: ['descend', 'ascend'],
       },
     {
-      title: 'Address',
-      dataIndex: 'address',
-      key: 'address',
-      ...getColumnSearchProps('address'),
-      sorter: (a, b) => a.address.length - b.address.length,
-      sortDirections: ['descend', 'ascend'],
-    },
-    {
         title: 'Edit',
-      render:()=><div>Edit</div>
+      render:()=><Button>Edit</Button>
       },
     {
       title: 'Delete',
-    render:()=><div>delete</div>
+    render:()=><Button type="primary" danger>
+    Delete
+  </Button>
     }
   ];
 useEffect(()=>{

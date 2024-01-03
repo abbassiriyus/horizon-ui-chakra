@@ -1,3 +1,15 @@
 .body_product{
     margin-top: 100px;
 }
+
+
+.formall{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.oneinput{
+    max-width: 550px;
+    min-width: 250px;
+    width: 100%;
+}
