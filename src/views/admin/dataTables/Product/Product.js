@@ -2,38 +2,16 @@ import { SearchOutlined } from '@ant-design/icons';
 import React, { useRef, useState,useEffect } from 'react';
 import Highlighter from 'react-highlight-words';
 import "../style.css"
-import { Button, Image, Input, Space, Table } from 'antd';
+import { Button, Image, Input, Space, Table,message, Popconfirm } from 'antd';
 import axios from 'axios';
 import url from 'host/host';
-const data = [
-  {
-    key: '1',
-    name: 'John Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-  },
-  {
-    key: '2',
-    name: 'Joe Black',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-  },
-  {
-    key: '3',
-    name: 'Jim Green',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-  },
-  {
-    key: '4',
-    name: 'Jim Red',
-    age: 32,
-    address: 'London No. 2 Lake Park',
-  },
-];
+import InputPage from './InputPage';
+
 
 export default function Settings() {
     var [data,setData]=useState([])
+    var [page,setPage]=useState(0)
+    var [select,setSelect]=useState(0)
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef(null);
@@ -42,6 +20,15 @@ export default function Settings() {
     setSearchText(selectedKeys[0]);
     setSearchedColumn(dataIndex);
   };
+  const confirm = (e) => {
+  console.log(e);
+  message.success('Click on Yes');
+};
+const cancel = (e) => {
+  console.log(e);
+  message.error('Click on No');
+};
+
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText('');
@@ -184,13 +171,20 @@ export default function Settings() {
       },
     {
         title: 'Edit',
-      render:()=><Button>Edit</Button>
+      render:(_,item)=><Button onClick={()=>{setSelect(item.id);setPage(1)}}>Edit</Button>
       },
     {
       title: 'Delete',
-    render:()=><Button type="primary" danger>
-    Delete
-  </Button>
+    render:()=>  <Popconfirm
+    title="Delete the task"
+    description="Are you sure to delete this task?"
+    onConfirm={confirm}
+    onCancel={cancel}
+    okText="Yes"
+    cancelText="No"
+  >
+    <Button danger>Delete</Button>
+  </Popconfirm>
     }
   ];
 useEffect(()=>{
@@ -205,11 +199,19 @@ axios.get(`${url}/api/product`).then(res=>{
 
   return <div>
 
+{page==0?(
+    <div>
+     <Button onClick={()=>{setSelect(0);setPage(1)}} style={{margin:'10px'}} type="primary">Create Product</Button>
+<Table columns={columns} dataSource={data} />   
+    </div>
+):(<div></div>)}
+{page==1?(
+    <div>
+        <Button type="dashed" onClick={()=>{setPage(0)}} style={{cursor:'pointer',margin:'10px'}}>Close</Button>
+   <InputPage id={select}/>  
+    </div>
+):(<div></div>)}
 
-<Button style={{margin:'10px'}} type="primary">Create Product</Button>
-
-
-<Table columns={columns} dataSource={data} />
 
 
   </div>;

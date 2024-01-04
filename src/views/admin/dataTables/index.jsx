@@ -17,15 +17,14 @@ var [page,setPage]=useState(0)
 <Radio.Group  onChange={(e) => setPage(e.target.value*1)}>
         <Radio.Button value="0">Product</Radio.Button>
         <Radio.Button value="1">Bigcategory</Radio.Button>
-        <Radio.Button value="2">Category</Radio.Button>
-        <Radio.Button value="3">Subcategory</Radio.Button>
+        <Radio.Button value="2">Категория</Radio.Button>
+        <Radio.Button value="3">Подкатегория</Radio.Button>
       </Radio.Group>
 
 {page===0?(<div><Product/></div>):(<div></div>)}
 {page===1?(<div><BigCategory/></div>):(<div></div>)}
 {page===2?(<div><Category/></div>):(<div></div>)}
 {page===3?(<div><SubCategory/></div>):(<div></div>)}
-<InputPage id={1}/>
 
 </div>
 
